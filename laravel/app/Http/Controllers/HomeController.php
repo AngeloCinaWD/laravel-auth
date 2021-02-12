@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,9 @@ class HomeController extends Controller
       $request -> validate ([
         'icon' => 'required|file'
       ]);
+
+      $this -> deleteUserIcon();
+
       $image = $request -> file('icon');
       $ext = $image -> getClientOriginalExtension();
       $name = rand(100000, 999999).'_'.time();
@@ -46,9 +50,23 @@ class HomeController extends Controller
     }
 
     public function clearUserIcon() {
+
+      $this -> deleteUserIcon();
+
       $user = Auth::user();
       $user -> icon = null;
       $user -> save();
       return redirect() -> back();
+    }
+
+    private function deleteUserIcon() {
+      $user = Auth::user();
+
+      try {
+        $filename = $user -> icon;
+        $file = storage_path('app/public/icon/' . $filename);
+        $res = File::delete($file);
+        // dd($file, $res);
+      } catch (\Exception $e) {}
     }
 }
