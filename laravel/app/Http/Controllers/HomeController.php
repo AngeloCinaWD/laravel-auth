@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,9 @@ class HomeController extends Controller
       $file = $image -> storeAs('icon', $destFile, 'public');
       // dd($data, $image);
       // dd($image, $ext, $name, $destFile);
+      $user = Auth::user();
+      $user -> icon = $destFile;
+      $user -> save();
       return redirect() -> back();
     }
 }

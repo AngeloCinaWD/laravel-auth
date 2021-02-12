@@ -19,11 +19,27 @@
                       <input type="file" class="form-control bprder-0" name="icon" value="">
                       <br>
                       <br>
-                      <input type="submit" name="" value="UPDATE">
+                      <input type="submit" class="btn btn-primary" value="UPDATE">
 
                     </form>
                 </div>
             </div>
+
+            @if (Auth::user() -> icon)
+              <br>
+
+              <div class="card">
+                  <div class="card-header">ICON USER</div>
+
+                  <div class="card-body">
+                      <h4>username: {{Auth::user() -> name}}</h4>
+                      <br>
+                      <img src="{{asset('storage/icon/' . Auth::user() -> icon)}}" width="150px" alt="">
+                  </div>
+              </div>
+            @endif
+
+
         </div>
     </div>
 </div>
