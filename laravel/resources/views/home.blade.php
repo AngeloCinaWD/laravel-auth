@@ -19,9 +19,12 @@
                       <input type="file" class="form-control bprder-0" name="icon" value="">
                       <br>
                       <br>
-                      <input type="submit" class="btn btn-primary" value="UPDATE">
+                      <input type="submit" class="btn btn-primary" value="UPDATE ICON">
 
+                      <a href="{{route('clear-icon')}}" class="btn btn-danger">CLEAR ICON</a>
                     </form>
+
+
                 </div>
             </div>
 

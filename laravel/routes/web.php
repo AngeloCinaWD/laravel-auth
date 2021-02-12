@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/update/user/icon', 'HomeController@updateUserIcon') -> name('update-icon');
+Route::get('/clear/user/icon', 'HomeController@clearUserIcon') -> name('clear-icon');
